@@ -13,6 +13,20 @@ public class Product {
  private String product;
  private String arrival;
 
+    public Product() {
+    }
+
+    public Product(String category, Integer inventory, Float rating, String currency, Float price, String origin, String product, String arrival) {
+        this.category = category;
+        this.inventory = inventory;
+        this.rating = rating;
+        this.currency = currency;
+        this.price = price;
+        this.origin = origin;
+        this.product = product;
+        this.arrival = arrival;
+    }
+
     public String getCategory() {
         return category;
     }

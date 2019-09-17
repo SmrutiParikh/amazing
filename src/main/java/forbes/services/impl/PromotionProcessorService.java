@@ -80,7 +80,7 @@ public class PromotionProcessorService {
         }
 
         if ( Float.parseFloat(maxDiscountNode.getAmount()) == 0F) {
-            parsePromotionSet(specialPromotion, jsonNode);
+            maxDiscountNode = parsePromotionSet(specialPromotion, jsonNode);
         }
         ((ObjectNode) jsonNode).put("discount", mapper.convertValue(maxDiscountNode, JsonNode.class));
         return jsonNode;
@@ -133,5 +133,8 @@ public class PromotionProcessorService {
         return null;
     }
 
-
+    public static void clear(){
+        promotionSets.clear();
+        specialPromotion.clear();
+    }
 }
