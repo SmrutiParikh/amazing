@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration scan="true" scanPeriod="60 seconds">
+    <property name="logback.dir" value="/var/log/forbes/logs"/>
+    <!-- 10 days -->
+    <property name="logback.retention.hours" value="240"/>
+    <property name="LOG_LEVEL" value="INFO"/>
+    <property name="max.size" value="1GB"/>
+
+
+    <appender name="applicationLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logback.dir}/amazing.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logback.dir}/amazing.%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${max.size}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${logback.retention.hours}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %-26(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32} [%file:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.dailyhunt" additivity="false">
+        <level value="${LOG_LEVEL}"/>
+        <appender-ref ref="applicationLog"/>
+    </logger>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="applicationLog"/>
+    </root>
+</configuration>

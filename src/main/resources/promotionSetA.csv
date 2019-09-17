@@ -1,0 +1,4 @@
+origin,EQ,africa,7,percentage
+rating,EQ,2,4,percentage
+rating,LT,2,8,percentage
+category,IN,["electronics"_"furnishing"],AND,price,GTE,500,100,INR
