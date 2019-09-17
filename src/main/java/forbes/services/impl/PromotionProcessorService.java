@@ -57,7 +57,7 @@ public class PromotionProcessorService {
             promotionSets.put(filePath, records);
         });
 
-        if(!Boolean.valueOf(disableSplPromo)) {
+        if(Boolean.valueOf(disableSplPromo)) {
             return;
         }
 

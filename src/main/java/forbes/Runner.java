@@ -9,6 +9,7 @@ import forbes.services.impl.PromotionProcessorService;
 import forbes.utils.Constants;
 import forbes.utils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Runner {
         //Apply Promotions
         String promotionSet = ArrayUtils.getLength(args) > 0 ? args[0] : "";
         String disableSplPromo = ArrayUtils.getLength(args) > 1 ? args[1] : "";
-        promotionSet = promotionSet.contains(".csv") ? promotionSet : promotionSet + ".csv";
+        promotionSet = StringUtils.isNotBlank(promotionSet) && !promotionSet.contains(".csv") ? promotionSet + ".csv" : promotionSet;
         List<JsonNode> jsonNodes = PromotionProcessorService.processPromotions(products, promotionSet, disableSplPromo);
 
         //Write Output to a file
